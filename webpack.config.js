@@ -1,6 +1,28 @@
 module.exports = {
-    entry: './app.js',
+    entry: './src/app.js',
     output: {
-        filename: './dist/bundle.js'
-    }
+        path: 'dist',
+        filename: 'app.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', 'stage-0']
+                }
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            }
+        ]
+
+    },
+    resolve: {
+        alias: {}
+    },
+    devtool: 'source-map'
 };
