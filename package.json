@@ -1,0 +1,20 @@
+{
+  "name": "vue-boilerplate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/peteringram0/vue-boilerplate",
+  "author": "Peter Ingram <p.ingram@managedracks.co.uk>",
+  "license": "MIT",
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --config webpack.config.js"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "promise-polyfill": "^6.0.2",
+    "vue": "^2.2.4",
+    "vue-router": "^2.3.0"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  }
+}
