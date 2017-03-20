@@ -6,10 +6,9 @@
         h1 {{ message }}
 </template>
 
-<style scoped>
-    h1 {
-        color: red
-    }
+<style lang="stylus" scoped>
+    h1
+        color red
 </style>
 
 <script>

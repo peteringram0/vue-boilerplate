@@ -3,15 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/peteringram0/vue-boilerplate",
-  "author": "Peter Ingram <p.ingram@managedracks.co.uk>",
+  "author": "Peter Ingram <peter.ingram0@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "./node_modules/.bin/webpack --progress --hide-modules --config webpack.config.js",
-    "dev": "./node_modules/.bin/webpack --watch",
-    "html": "cp ./src/index.html ./dist/index.html"
-  },
-  "dependencies": {
-    "vue": "^2.1.6"
+    "js:prod": "./node_modules/.bin/webpack --progress --hide-modules --config webpack.config.js",
+    "js:dev": "./node_modules/.bin/webpack --watch --config webpack.config.js",
+    "html": "VER=\"`head -200 /dev/urandom | cksum | cut -f1 -d \" \"`\" && ./node_modules/.bin/preprocess ./src/index.html -o ./dist/index.html -t html -d  '{\"PROVIDER\": \"'$VER'\"}'",
+    "serve": "cd ./dist && ./../node_modules/.bin/live-server > /dev/null &",
+    "setup": "mkdir dist",
+    "dev": "yarn run setup && yarn run html && yarn run js:dev & yarn run serve",
+    "prod": "yarn run setup && yarn run html && yarn run js:prod"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -25,10 +26,17 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "css-loader": "^0.26.1",
+    "live-server": "^1.2.0",
     "pug": "^2.0.0-beta11",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "template-html-loader": "^1.0.0",
+    "vue": "^2.1.6",
     "vue-loader": "^10.0.2",
     "vue-template-compiler": "^2.1.6",
     "webpack": "2.2.0-rc.1"
+  },
+  "dependencies": {
+    "preprocess-cli-2": "github:peteringram0/preprocess-cli-2"
   }
 }
