@@ -9,10 +9,10 @@
     "js:prod": "./node_modules/.bin/webpack --progress --hide-modules --config webpack.config.js",
     "js:dev": "./node_modules/.bin/webpack --watch --config webpack.config.js",
     "html": "VER=\"`head -200 /dev/urandom | cksum | cut -f1 -d \" \"`\" && ./node_modules/.bin/preprocess ./src/index.html -o ./dist/index.html -t html -d  '{\"PROVIDER\": \"'$VER'\"}'",
-    "serve": "cd ./dist && ./../node_modules/.bin/live-server > /dev/null &",
+    "serve": "./node_modules/.bin/webpack-dev-server",
     "setup": "mkdir dist",
-    "dev": "yarn run setup && yarn run html && yarn run js:dev & yarn run serve",
-    "prod": "yarn run setup && yarn run html && yarn run js:prod"
+    "dev": "yarn run html && yarn run js:dev & yarn run serve",
+    "prod": "yarn run html && yarn run js:prod"
   },
   "devDependencies": {
     "babel": "^6.5.2",
@@ -27,16 +27,16 @@
     "babel-register": "^6.18.0",
     "css-loader": "^0.26.1",
     "live-server": "^1.2.0",
+    "preprocess-cli-2": "github:peteringram0/preprocess-cli-2",
     "pug": "^2.0.0-beta11",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "template-html-loader": "^1.0.0",
     "vue": "^2.1.6",
     "vue-loader": "^10.0.2",
+    "vue-router": "^2.3.0",
     "vue-template-compiler": "^2.1.6",
-    "webpack": "2.2.0-rc.1"
-  },
-  "dependencies": {
-    "preprocess-cli-2": "github:peteringram0/preprocess-cli-2"
+    "webpack": "^2.3.1",
+    "webpack-dev-server": "2"
   }
 }

@@ -1,21 +1,21 @@
 <template lang="pug">
-    div
-        ul
-            li one
-            li two
-        h1 {{ message }}
+div
+	h1 {{ message }}
+	router-link(to='/home') Home
+	router-link(to='/about') About
+	router-view
 </template>
 
 <style lang="stylus" scoped>
     h1
-        color red
+        color blue
 </style>
 
 <script>
 export default{
     data(){
         return {
-            message: 'hi 3'
+            message: 'hi'
         }
     }
 }

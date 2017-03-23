@@ -7,6 +7,7 @@ Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://
 # Setup
 ````javascript
 $ yarn install
+$ yarn run setup
 ````
 
 # Development
