@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-var OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 // Production flat
 var inProduction = (process.env.NODE_ENV === 'production');
@@ -39,7 +39,6 @@ module.exports = {
 				}
 			}
 		]
-
 	},
 	resolve: {
 		alias: {}

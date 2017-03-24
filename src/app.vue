@@ -11,7 +11,7 @@ div.uk-container
 
 <style lang="stylus">
 
-	@import "../node_modules/uikit/dist/css/uikit.min.css"
+	@import "./styles/styles"
 
 	.h1
 		color blue
