@@ -26,7 +26,7 @@ module.exports = {
 	resolve: {
 		alias: {}
 	},
-	// devtool: 'source-map', Dont make source maps
+	devtool: 'source-map', // Dont make source maps
 	devServer: {
 		contentBase: ('./dist'),
 		historyApiFallback: true

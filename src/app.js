@@ -8,6 +8,16 @@ import Home from './views/home.vue';
 import About from './views/about.vue';
 import NotFoundComponent from './views/404.vue';
 
+import UIkit from 'uikit';
+import Icons from 'uikit/dist/js/uikit-icons';
+
+
+// loads the Icon plugin
+UIkit.use(Icons);
+
+// components can be called from the imported UIkit reference
+UIkit.notification('Hello world.');
+
 // Use the VueRouter
 Vue.use(VueRouter);
 
@@ -16,15 +26,10 @@ Vue.use(VueRouter);
  */
 const router = new VueRouter({
 	mode: 'history',
-	routes: [{
-			path: '/home',
-			component: Home
-		},
-		{
-			path: '/about',
-			component: About
-		},
-		{ path: '*', component: NotFoundComponent }
+	routes: [
+		{path: '/home', component: Home},
+		{path: '/about', component: About},
+		{path: '*', component: NotFoundComponent }
 	]
 })
 

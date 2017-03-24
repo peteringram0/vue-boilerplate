@@ -1,8 +1,11 @@
 <template lang="pug">
-div
+div.uk-container
 	h1 {{ message }}
-	router-link(to='/home') Home
-	router-link(to='/about') About
+	ul
+		li
+			router-link(to='/home') Home
+		li
+			router-link(to='/about') About
 	router-view
 </template>
 
@@ -15,7 +18,7 @@ div
 export default{
     data(){
         return {
-            message: 'hi'
+            message: 'Hello World'
         }
     }
 }
