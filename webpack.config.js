@@ -1,8 +1,15 @@
 const webpack = require('webpack');
 const path = require('path');
+const glob = require('glob');
+
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Production flat
 var inProduction = (process.env.NODE_ENV === 'production');
@@ -11,10 +18,13 @@ var inProduction = (process.env.NODE_ENV === 'production');
  * Module
  */
 module.exports = {
-	entry: './src/app.js',
+	entry: {
+		app: './src/app.js',
+		// vendor: ['vue/dist/vue.js']
+	},
 	output: {
 		path: path.join(__dirname, '/dist'),
-		filename: 'app.js',
+		filename: '[name].[chunkhash].js',
 		publicPath: '/'
 	},
 	module: {
@@ -44,7 +54,35 @@ module.exports = {
 		alias: {}
 	},
 	plugins: [
-		new ExtractTextPlugin("styles.css")
+
+		/**
+		 * Clean out Dist dir
+		 */
+		new CleanWebpackPlugin(['dist'], {
+			root: __dirname,
+			verbose: true,
+			dry: false
+		}),
+
+		/**
+		 * Move all assets
+		 */
+		new CopyWebpackPlugin([{
+			from: __dirname + '/src/assets',
+			to: __dirname + '/dist'
+		}]),
+
+		/**
+		 * Extract all of the stylus out into this CSS file
+		 */
+		new ExtractTextPlugin("[name].[chunkhash].css"),
+
+
+		new HtmlWebpackPlugin({
+			filename: __dirname + '/dist/index.html',
+			template: __dirname + '/src/index.ejs'
+		})
+
 	],
 	devServer: {
 		contentBase: ('./dist'),
@@ -66,5 +104,8 @@ if (inProduction) {
 	module.exports.plugins.push(
 		new UglifyJSPlugin(),
 		new OptimizeCssAssetsPlugin()
+		// new PurifyCSSPlugin({
+		// 	paths: glob.sync(path.join(__dirname, 'src/**/*.html')),
+		// })
 	)
 }
