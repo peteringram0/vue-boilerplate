@@ -6,7 +6,7 @@ div this is the about page 2
 export default{
     data(){
 		return {
-
+			text: 'hi'
 		}
     }
 }

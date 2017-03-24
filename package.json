@@ -6,10 +6,10 @@
   "author": "Peter Ingram <peter.ingram0@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "js:prod": "./node_modules/.bin/webpack --progress --hide-modules --config webpack.config.js",
-    "js:dev": "./node_modules/.bin/webpack --watch --config webpack.config.js",
+    "js:prod": "NODE_ENV=production webpack --progress --config webpack.config.js",
+    "js:dev": "webpack --watch --config webpack.config.js",
     "html": "VER=\"`head -200 /dev/urandom | cksum | cut -f1 -d \" \"`\" && ./node_modules/.bin/preprocess ./src/index.html -o ./dist/index.html -t html -d  '{\"PROVIDER\": \"'$VER'\"}'",
-    "serve": "./node_modules/.bin/webpack-dev-server",
+    "serve": "webpack-dev-server",
     "setup": "mkdir dist",
     "dev": "yarn run html && yarn run js:dev & yarn run serve",
     "prod": "yarn run html && yarn run js:prod"
@@ -26,19 +26,22 @@
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.18.0",
     "css-loader": "^0.26.1",
+    "jquery": "^3.2.1",
     "live-server": "^1.2.0",
     "preprocess-cli-2": "github:peteringram0/preprocess-cli-2",
     "pug": "^2.0.0-beta11",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "template-html-loader": "^1.0.0",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
+    "uglifyjs-webpack-plugin": "^0.3.1",
+    "uikit": "^3.0.0-beta.18",
     "vue": "^2.1.6",
     "vue-loader": "^10.0.2",
     "vue-router": "^2.3.0",
     "vue-template-compiler": "^2.1.6",
     "webpack": "^2.3.1",
     "webpack-dev-server": "2",
-    "jquery": "^3.2.1",
-    "uikit": "^3.0.0-beta.18"
+    "extract-text-webpack-plugin": "^2.1.0"
   }
 }

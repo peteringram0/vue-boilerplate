@@ -9,9 +9,11 @@ div.uk-container
 	router-view
 </template>
 
-<style lang="stylus" scoped>
-    h1
-        color blue
+<style lang="stylus">
+	@import "../node_modules/uikit/dist/css/uikit.css";
+    .h1 {
+        color: blue;
+	}
 </style>
 
 <script>

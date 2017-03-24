@@ -6,7 +6,7 @@ h2 Sorry page not found
 export default{
     data(){
 		return {
-
+			text: 'hi'
 		}
     }
 }

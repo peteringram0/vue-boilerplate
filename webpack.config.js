@@ -1,4 +1,10 @@
-const path = require('path')
+const webpack = require('webpack');
+const path = require('path');
+
+var inProduction = (process.env.NODE_ENV === 'production');
+
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	entry: './src/app.js',
@@ -18,7 +24,19 @@ module.exports = {
 			},
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader'
+				loader: 'vue-loader',
+				options: {
+					loaders: {
+						// css: ExtractTextPlugin.extract({
+						// 	use: 'css-loader',
+						// 	fallback: 'vue-style-loader'
+						// })
+						stylus: ExtractTextPlugin.extract({
+							loader: ['css-loader', 'stylus-loader'],
+							fallbackLoader: 'vue-style-loader'
+						})
+					}
+				}
 			}
 		]
 
@@ -26,9 +44,27 @@ module.exports = {
 	resolve: {
 		alias: {}
 	},
-	devtool: 'source-map', // Dont make source maps
+	plugins: [
+		new ExtractTextPlugin("styles.css")
+	],
 	devServer: {
 		contentBase: ('./dist'),
 		historyApiFallback: true
 	},
 };
+
+/**
+ * NON Producton mode
+ */
+if (!inProduction) {
+	module.exports.devtool = 'source-map'
+}
+
+/**
+ * Producton mode
+ */
+if (inProduction) {
+	module.exports.plugins.push(
+		new UglifyJSPlugin()
+	)
+}

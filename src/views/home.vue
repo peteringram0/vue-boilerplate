@@ -6,7 +6,7 @@ div this is the home page
 export default{
     data(){
 		return {
-
+			text: 'hi'
 		}
     }
 }
