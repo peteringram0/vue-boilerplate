@@ -10,10 +10,12 @@ div.uk-container
 </template>
 
 <style lang="stylus">
-	@import "../node_modules/uikit/dist/css/uikit.css";
-    .h1 {
-        color: blue;
-	}
+
+	@import "../node_modules/uikit/dist/css/uikit.min.css"
+
+	.h1
+		color blue
+
 </style>
 
 <script>
