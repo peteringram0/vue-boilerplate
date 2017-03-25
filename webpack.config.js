@@ -22,7 +22,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, '/dist'),
-		filename: '[name].[chunkhash].js',
+		filename: ((inProduction) ? '[name].[chunkhash].js' : '[name].js'),
 		publicPath: '/'
 	},
 	module: {
@@ -56,7 +56,7 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 		   name: 'vendor',
 		   minChunks: Infinity,
-		   filename: 'vendor-[chunkhash].js',
+		   filename: ((inProduction) ? 'vendor-[chunkhash].js' : 'vendor.js'),
 		 }),
 
 		/**
@@ -79,8 +79,7 @@ module.exports = {
 		/**
 		 * Extract all of the stylus out into this CSS file
 		 */
-		new ExtractTextPlugin("[name].[chunkhash].css"),
-
+		new ExtractTextPlugin(((inProduction) ? '[name].[chunkhash].css' : '[name].css')),
 
 		new HtmlWebpackPlugin({
 			filename: __dirname + '/dist/index.html',

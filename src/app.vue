@@ -13,8 +13,8 @@ div.uk-container
 
 	@import "./styles/styles"
 
-	.h1
-		color blue
+	h1
+		color red
 
 </style>
 
