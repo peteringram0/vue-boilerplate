@@ -1,13 +1,16 @@
-<template lang="pug">
-div this is the home page
+<template>
+<div>
+	div this is the home page
+</div>
 </template>
 
 <script>
-export default{
-    data(){
+
+export default {
+	data() {
 		return {
 			text: 'hi'
 		}
-    }
+	}
 }
 </script>

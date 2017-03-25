@@ -1,5 +1,6 @@
 <template lang="pug">
 div.uk-container
+	navbar
 	h1 {{ message }}
 	ul
 		li
@@ -19,7 +20,10 @@ div.uk-container
 </style>
 
 <script>
+import navbar from './components/nav.vue'
+
 export default{
+	components: { navbar },
     data(){
         return {
             message: 'Hello World 2'
