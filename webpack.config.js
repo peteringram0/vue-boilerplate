@@ -7,9 +7,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-
-
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // Production flat
 var inProduction = (process.env.NODE_ENV === 'production');
@@ -20,7 +18,7 @@ var inProduction = (process.env.NODE_ENV === 'production');
 module.exports = {
 	entry: {
 		app: './src/app.js',
-		// vendor: ['vue/dist/vue.js']
+		vendor: ['vue/dist/vue.js', 'vue-router', 'uikit', 'uikit/dist/js/uikit-icons']
 	},
 	output: {
 		path: path.join(__dirname, '/dist'),
@@ -54,6 +52,12 @@ module.exports = {
 		alias: {}
 	},
 	plugins: [
+
+		new webpack.optimize.CommonsChunkPlugin({
+		   name: 'vendor',
+		   minChunks: Infinity,
+		   filename: 'vendor-[chunkhash].js',
+		 }),
 
 		/**
 		 * Clean out Dist dir

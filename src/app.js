@@ -2,14 +2,14 @@
 
 import Vue from 'vue/dist/vue.js';
 import VueRouter from 'vue-router';
-import Container from './app.vue';
-
-import Home from './views/home.vue';
-import About from './views/about.vue';
-import NotFoundComponent from './views/404.vue';
 
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
+
+import Container from './app.vue';
+import Home from './views/home.vue';
+import About from './views/about.vue';
+import NotFoundComponent from './views/404.vue';
 
 
 // loads the Icon plugin
