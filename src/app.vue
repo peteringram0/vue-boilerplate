@@ -2,6 +2,9 @@
 div.uk-background-primary
 	div.uk-container
 		navbar
+		button(@click="clickEvent")
+		h3 {{ binded }}
+		input(v-model="binded")
 		h1 {{ message }}
 		ul
 			li
@@ -27,8 +30,14 @@ export default{
 	components: { navbar },
     data(){
         return {
-            message: 'Hello World 2'
+            message: 'Hello World 2',
+			binded: ''
         }
-    }
+    },
+	methods: {
+		clickEvent() {
+			console.log('HI');
+		}
+	}
 }
 </script>
