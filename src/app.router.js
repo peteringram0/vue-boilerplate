@@ -15,6 +15,7 @@ Vue.use(VueRouter);
  */
 export default new VueRouter({
 	mode: 'history',
+	linkActiveClass: 'uk-active',
 	routes: [
 		{path: '/home', component: Home},
 		{path: '/about', component: About},

@@ -1,10 +1,8 @@
 <template lang="pug">
 div.uk-background-primary
 	div.uk-container
-		navbar
-		button(@click="clickEvent")
-		h3 {{ binded }}
-		input(v-model="binded")
+		navbar(:items="navItems")
+		button.uk-button.uk-button-secondary(@click="clickEvent") Click Me !
 		h1 {{ message }}
 		ul
 			li
@@ -24,19 +22,41 @@ div.uk-background-primary
 </style>
 
 <script>
+
+import UIkit from 'uikit';
+
 import navbar from './components/nav.vue'
 
-export default{
-	components: { navbar },
-    data(){
-        return {
-            message: 'Hello World 2',
-			binded: ''
-        }
-    },
+export default {
+	components: {
+		navbar
+	},
+	data() {
+		return {
+			message: 'Hello World 2',
+			navItems: [{
+					name: 'Home',
+					url: '/home'
+				}, {
+					name: 'About',
+					url: '/about'
+				},
+				{
+					name: 'Parent',
+					children: [{
+						name: 'Child 1',
+						url: '#'
+					}, {
+						name: 'Child 2',
+						url: '#'
+					}]
+				}
+			]
+		}
+	},
 	methods: {
 		clickEvent() {
-			console.log('HI');
+			UIkit.notification('You clicked me!!', {pos: 'top-right'});
 		}
 	}
 }
