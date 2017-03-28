@@ -1,5 +1,5 @@
 <template lang="pug">
-div this is the about page 7
+h1 this is the about page 7
 </template>
 
 <script>

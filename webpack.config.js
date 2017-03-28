@@ -44,7 +44,7 @@ module.exports = {
 							fallbackLoader: 'vue-style-loader'
 						})
 					}
-				}
+				},
 			}
 		]
 	},

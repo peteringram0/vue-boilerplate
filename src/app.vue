@@ -1,24 +1,13 @@
 <template lang="pug">
-div.uk-background-primary
+div.uk-background-1.uk-height-medium
 	div.uk-container
 		navbar(:items="navItems")
 		button.uk-button.uk-button-secondary(@click="clickEvent") Click Me !
-		h1 {{ message }}
-		ul
-			li
-				router-link(to='/home') Home
-			li
-				router-link(to='/about') About
-		router-view
+		router-view.uk-margin-top
 </template>
 
 <style lang="stylus">
-
 	@import "./styles/styles"
-
-	h1
-		color red
-
 </style>
 
 <script>
@@ -33,13 +22,16 @@ export default {
 	},
 	data() {
 		return {
-			message: 'Hello World 2',
 			navItems: [{
 					name: 'Home',
 					url: '/home'
 				}, {
 					name: 'About',
 					url: '/about'
+				},
+				{
+					name: 'Sink',
+					url: '/sink'
 				},
 				{
 					name: 'Parent',
