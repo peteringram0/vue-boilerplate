@@ -8,7 +8,7 @@ Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://
 * Production builds (Minified)
 * Separate vendor file
 * UIkit included
-* Development environment with history and hot reading 
+* Development environment with history and hot reading
 
 Todo
 * FN Tests
@@ -24,7 +24,7 @@ $ yarn run setup
 
 # Development
 ````javascript
-$ yarn run dev
+$ yarn run serve
 ````
 
 # Production

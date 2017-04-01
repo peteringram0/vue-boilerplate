@@ -1,7 +1,7 @@
 <template lang="pug">
-div.uk-background-1.uk-height-medium
+div.uk-height-medium.uk-background-1
 	div.uk-container
-		navbar(:items="navItems")
+		nav-bar(:items="navItems")
 		button.uk-button.uk-button-secondary(@click="clickEvent") Click Me !
 		router-view.uk-margin-top
 </template>
@@ -14,11 +14,11 @@ div.uk-background-1.uk-height-medium
 
 import UIkit from 'uikit';
 
-import navbar from './components/nav.vue'
+import NavBar from './components/nav.vue';
 
 export default {
 	components: {
-		navbar
+		NavBar
 	},
 	data() {
 		return {

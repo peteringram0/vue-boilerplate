@@ -7,8 +7,8 @@
   "license": "MIT",
   "scripts": {
     "js:prod": "NODE_ENV=production webpack --progress --config webpack.config.js",
-    "js:dev": "webpack --watch --config webpack.config.js",
-    "serve": "webpack-dev-server",
+    "js:dev": "webpack --progress --config webpack.config.js",
+    "serve": "webpack-dev-server --open --inline --hot",
     "dev": "yarn run js:dev",
     "prod": "yarn run js:prod"
   },
