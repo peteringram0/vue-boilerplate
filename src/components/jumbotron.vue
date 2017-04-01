@@ -1,11 +1,11 @@
 <template lang="html">
-	<div :class="containerClass" uk-height-viewport>
-		<div class="uk-section uk-section-xlarge">
+	<div :class="containerClassComputed" uk-height-viewport>
+		<div class="uk-container uk-section uk-section-xlarge">
 			<div uk-grid>
 				<div class="uk-width-1-1@m uk-first-column" :uk-scrollspy="animation">
-					<h1 class="uk-margin-medium uk-width-xlarge">
-						{{ title }}
-					</h1>
+					<h2 :class="'uk-margin-medium ' + direction">
+						<slot></slot>
+					</h2>
 				</div>
 			</div>
 		</div>
@@ -15,14 +15,14 @@
 <script>
 export default {
 	props: {
-		title: {
-			required: true
-		},
 		containerClass: {
-			default: 'uk-container uk-light'
+			default: ''
 		},
 		animation: {
-			default: 'cls: uk-animation-slide-left'
+			default: 'uk-animation-slide-left'
+		},
+		direction: {
+			default: ''
 		}
 	},
 
@@ -31,8 +31,16 @@ export default {
 			// containerClass: 'uk-container uk-light'
 		}
 	},
+	computed: {
+		containerClassComputed() {
+			return 'uk-light ' + this.containerClass
+		},
+		animationComputed() {
+			return 'cls: ' + this.animation
+		}
+	},
 	mounted() {
-		console.log(this.containerClass);
+		// console.log(this.containerClass);
 	}
 }
 </script>

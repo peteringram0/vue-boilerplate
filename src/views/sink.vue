@@ -1,11 +1,18 @@
 <template lang="pug">
 .uk-container.uk-light
-	button.uk-button.uk-button-secondary(@click="clickEvent") Click Me !
+	button.uk-button.uk-button-secondary(@click="clickEvent") Toast !!
+	modal
 </template>
 
 <script>
 import UIkit from 'uikit';
+
+import Modal from './../components/modal.vue';
+
 export default {
+	components: {
+		Modal
+	},
 	data() {
 		return {
 			text: 'hi'
