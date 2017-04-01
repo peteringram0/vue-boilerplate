@@ -1,9 +1,7 @@
 <template lang="pug">
-div.uk-height-medium.uk-background-1
-	div.uk-container
-		nav-bar(:items="navItems")
-		button.uk-button.uk-button-secondary(@click="clickEvent") Click Me !
-		router-view.uk-margin-top
+div.uk-background-1
+	nav-bar(:items="navItems")
+	router-view.uk-margin-top
 </template>
 
 <style lang="stylus">
@@ -44,11 +42,6 @@ export default {
 					}]
 				}
 			]
-		}
-	},
-	methods: {
-		clickEvent() {
-			UIkit.notification('You clicked me!!', {pos: 'top-right'});
 		}
 	}
 }

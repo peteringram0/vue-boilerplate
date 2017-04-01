@@ -1,5 +1,6 @@
 <template>
 <div class="uk-navbar-container uk-navbar-transparent uk-light" uk-navbar>
+
 	<div class="uk-navbar-left">
 		<a href="#" class="uk-logo uk-navbar-item">Logo</a>
 
@@ -8,7 +9,7 @@
 			<router-link v-if="!item.children" tag="li" :to="item.url" v-for="item in items">
 				<a>{{ item.name }}</a>
 			</router-link>
-<!--
+
 			<li v-if="item.children" v-for="item in items">
 				<a v-if="item.children" href="#">{{ item.name }}</a>
 				<div v-if="item.children" class="uk-navbar-dropdown">
@@ -18,7 +19,7 @@
 						</router-link>
 					</ul>
 				</div>
-			</li> -->
+			</li>
 
 		</ul>
 

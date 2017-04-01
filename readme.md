@@ -12,7 +12,7 @@ Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://
 
 Todo
 * FN Tests
-* Add in API Library
+* CSS Pre-processing
 
 ![alt tag](https://media.giphy.com/media/3o6UBhjHobLFgEmrJu/giphy.gif)]
 
