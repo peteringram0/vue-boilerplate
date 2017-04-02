@@ -9,9 +9,6 @@ div.uk-background-1
 </style>
 
 <script>
-
-import UIkit from 'uikit';
-
 import NavBar from './components/nav.vue';
 
 export default {

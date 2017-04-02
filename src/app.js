@@ -1,17 +1,12 @@
 'use strict';
 
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
-
-// import axios from 'axios';
+/**
+ * Bootstrap our application
+ */
+import './bootstrap';
 
 import router from './app.router';
 import Container from './container.vue';
-
-// loads the Icon plugin
-UIkit.use(Icons);
 
 /**
  * Our app
