@@ -1,7 +1,8 @@
 <template lang="pug">
 .uk-container.uk-light
 	button.uk-button.uk-button-secondary(@click="clickEvent") Toast !!
-	modal
+	modal(title="Testing One")
+	modal(title="Testing Two")
 </template>
 
 <script>
