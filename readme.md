@@ -11,8 +11,7 @@ Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://
 * Development environment with history and hot reading
 
 Todo
-* FN Tests
-* CSS Pre-processing
+* More FN tests (Test methods)
 
 ![alt tag](https://media.giphy.com/media/3o6UBhjHobLFgEmrJu/giphy.gif)]
 

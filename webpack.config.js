@@ -8,6 +8,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 // Production flat
 var inProduction = (process.env.NODE_ENV === 'production');
@@ -39,6 +40,12 @@ module.exports = {
 				loader: 'vue-loader',
 				exclude: /node_modules/,
 				options: {
+					postcss : [
+						autoprefixer({
+				            cascade : false,
+				            browsers: ['> 0%']
+				        })
+					],
 					loaders: {
 						stylus: ExtractTextPlugin.extract({
 							loader: ['css-loader', 'stylus-loader'],
@@ -54,6 +61,9 @@ module.exports = {
 	},
 	plugins: [
 
+		/**
+		 * Chunk
+		 */
 		new webpack.optimize.CommonsChunkPlugin({
 		   name: 'vendor',
 		   minChunks: Infinity,
@@ -82,6 +92,9 @@ module.exports = {
 		 */
 		new ExtractTextPlugin(((inProduction) ? '[name].[chunkhash].css' : '[name].css')),
 
+		/**
+		 * Inject files into HTML
+		 */
 		new HtmlWebpackPlugin({
 			filename: __dirname + '/dist/index.html',
 			template: __dirname + '/src/index.ejs'
@@ -108,8 +121,5 @@ if (inProduction) {
 	module.exports.plugins.push(
 		new UglifyJSPlugin(),
 		new OptimizeCssAssetsPlugin()
-		// new PurifyCSSPlugin({
-		// 	paths: glob.sync(path.join(__dirname, 'src/**/*.html')),
-		// })
 	)
 }
