@@ -19,7 +19,7 @@ var inProduction = (process.env.NODE_ENV === 'production');
 module.exports = {
 	entry: {
 		app: './src/app.js',
-		vendor: ['vue/dist/vue.js', 'vue-router', 'uikit', 'uikit/dist/js/uikit-icons', 'axios']
+		vendor: ['vue/dist/vue.js', 'vue-router', 'axios', 'bootstrap-vue/dist/bootstrap-vue.esm']
 	},
 	output: {
 		path: path.join(__dirname, '/dist'),

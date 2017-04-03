@@ -1,7 +1,9 @@
 <template lang="pug">
-div.uk-background-1
-	nav-bar(:items="navItems")
-	router-view.uk-margin-top
+.uk-background-1.pb-3
+	.container
+		nav-bar(:items="navItems")
+		router-view.uk-margin-top
+		button.btn.btn-primary Test Button
 </template>
 
 <style lang="stylus">

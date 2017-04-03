@@ -1,30 +1,15 @@
 <template lang="html">
-	<div :class="containerClassComputed" uk-height-viewport>
-		<div class="uk-container uk-section uk-section-xlarge">
-			<div uk-grid>
-				<div class="uk-width-1-1@m uk-first-column" :uk-scrollspy="animation">
-					<h2 :class="'uk-margin-medium ' + direction">
-						<slot></slot>
-					</h2>
-				</div>
-			</div>
-		</div>
+	<div class="jumbotron jumbotron-fluid">
+		<div class="container">
+	    	<h1 class="display-3">Fluid jumbotron</h1>
+	    	<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+	  	</div>
 	</div>
 </template>
 
 <script>
 export default {
-	props: {
-		containerClass: {
-			default: ''
-		},
-		animation: {
-			default: 'uk-animation-slide-left'
-		},
-		direction: {
-			default: ''
-		}
-	},
+	// props: [],
 
 	data() {
 		return {
@@ -32,12 +17,7 @@ export default {
 		}
 	},
 	computed: {
-		containerClassComputed() {
-			return 'uk-light ' + this.containerClass
-		},
-		animationComputed() {
-			return 'cls: ' + this.animation
-		}
+
 	},
 	mounted() {
 		// console.log(this.containerClass);

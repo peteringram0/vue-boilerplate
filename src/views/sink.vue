@@ -1,10 +1,15 @@
-<template lang="pug">
-.uk-container.uk-light
-	button.uk-button.uk-button-secondary(@click="clickEvent") Toast !!
-	modal(title="Testing One", button-text="Modal One")
-		p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed.
-	modal(title="Testing Two", button-text="Modal Two")
-		p Testing
+<template>
+<div>
+	<b-card overlay img="http://placeskull.com/200/200/E8117F/-1/0" class="mb-2">
+        Overlay cards are cute!
+    </b-card>
+
+	<b-form-checkbox v-model="state" value="accepted" unchecked-value="not_accepted">
+		I accept terms and use
+ 	</b-form-checkbox>
+
+	<div>State: <strong>{{state}}</strong></div>
+</div>
 </template>
 
 <script>
@@ -16,7 +21,8 @@ export default {
 	},
 	data() {
 		return {
-			text: 'hi'
+			text: 'hi',
+			state: 'please_accept'
 		}
 	},
 	methods: {

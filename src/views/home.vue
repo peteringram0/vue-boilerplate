@@ -1,7 +1,7 @@
 <template>
 	<section>
-		<jumbotron>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</jumbotron>
-		<jumbotron container-class="uk-section-secondary" animation="uk-animation-slide-right" direction="uk-text-right">Testing Stuff</jumbotron>
+		<jumbotron></jumbotron>
+		<jumbotron></jumbotron>
 	</section>
 </template>
 

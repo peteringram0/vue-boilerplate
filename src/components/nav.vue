@@ -1,32 +1,25 @@
 <template>
-<div class="uk-container">
-	<div class="uk-navbar-container uk-navbar-transparent uk-light" uk-navbar>
+<b-navbar toggleable type="inverse" variant="primary" class="mb-3">
+	<b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
-		<div class="uk-navbar-left">
-			<a href="#" class="uk-logo uk-navbar-item">Logo</a>
+	<b-link class="navbar-brand" to="/">
+		<span>Logo</span>
+	</b-link>
 
-			<ul class="uk-navbar-nav">
+	<b-collapse is-nav id="nav_collapse">
 
-				<router-link v-if="!item.children" tag="li" :to="item.url" v-for="item in items">
-					<a>{{ item.name }}</a>
-				</router-link>
+		<b-nav is-nav-bar>
 
-				<li v-if="item.children" v-for="item in items">
-					<a v-if="item.children" href="#">{{ item.name }}</a>
-					<div v-if="item.children" class="uk-navbar-dropdown">
-						<ul class="uk-nav uk-navbar-dropdown-nav">
-							<router-link :to="child.url" tag="li" v-for="child in item.children">
-								<a>{{ child.name }}</a>
-							</router-link>
-						</ul>
-					</div>
-				</li>
+			<b-nav-item v-for="item in items" :to="item.url" v-show="!item.children">{{ item.name }}</b-nav-item>
 
-			</ul>
+			<b-nav-item-dropdown :text="item.name" right-alignment v-show="item.children" v-for="item in items">
+				<b-dropdown-item :to="child.url" v-for="child in item.children">{{ child.name }}</b-dropdown-item>
+			</b-nav-item-dropdown>
 
-		</div>
-	</div>
-</div>
+		</b-nav>
+
+	</b-collapse>
+</b-navbar>
 </template>
 
 <script>
