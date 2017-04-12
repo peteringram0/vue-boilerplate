@@ -1,31 +1,12 @@
-<template>
-<div class="container mt-2">
-	<a class="button mb-2" @click="alertCustom">Alert !!</a>
-
-	<b-table
-	    :data="tableData"
-	    :bordered="isBordered"
-	    :striped="isStriped"
-	    :narrowed="isNarrowed"
-	    :selectable="isSelectable"
-	    :checkable="isCheckable"
-	    :mobile-cards="hasMobileCards"
-	    :paginated="isPaginated"
-	    :per-page="perPage"
-	    :pagination-simple="isPaginationSimple"
-	    default-sort="first_name"
-	    @check="checked"
-	    @select="selected">
-
-	    <b-table-column field="id" label="ID" width="40" sortable numeric></b-table-column>
-	    <b-table-column field="first_name" label="First Name" sortable></b-table-column>
-	    <b-table-column field="last_name" label="Last Name" sortable></b-table-column>
-	    <b-table-column field="date" label="Date" sortable :format="formatDate"></b-table-column>
-	    <b-table-column field="gender" label="Gender"></b-table-column>
-
-	</b-table>
-
-</div>
+<template lang="pug">
+	.container.mt-2
+		a.button.mb-2(@click='alertCustom') Alert !!
+		b-table(:data='tableData', :bordered='isBordered', :striped='isStriped', :narrowed='isNarrowed', :selectable='isSelectable', :checkable='isCheckable', :mobile-cards='hasMobileCards', :paginated='isPaginated', :per-page='perPage', :pagination-simple='isPaginationSimple', default-sort='first_name', @check='checked', @select='selected')
+			b-table-column(field='id', label='ID', width='40', sortable='', numeric='')
+			b-table-column(field='first_name', label='First Name', sortable='')
+			b-table-column(field='last_name', label='Last Name', sortable='')
+			b-table-column(field='date', label='Date', sortable='', :format='formatDate')
+			b-table-column(field='gender', label='Gender')
 </template>
 
 <script>

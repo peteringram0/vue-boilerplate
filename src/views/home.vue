@@ -1,8 +1,7 @@
-<template>
-<section>
-	<jumbotron @notifyparent="notify" :function-for-child="runInsideChild"></jumbotron>
-	<level></level>
-</section>
+<template lang="pug">
+section
+	jumbotron(@notifyparent='notify', :function-for-child='runInsideChild')
+	level
 </template>
 
 <script>

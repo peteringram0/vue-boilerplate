@@ -40,11 +40,11 @@ module.exports = {
 				loader: 'vue-loader',
 				exclude: /node_modules/,
 				options: {
-					postcss : [
+					postcss: [
 						autoprefixer({
-				            cascade : false,
-				            browsers: ['> 0%']
-				        })
+							cascade: false,
+							browsers: ['> 0%']
+						})
 					],
 					loaders: {
 						stylus: ExtractTextPlugin.extract({
@@ -67,10 +67,10 @@ module.exports = {
 		 * Chunk
 		 */
 		new webpack.optimize.CommonsChunkPlugin({
-		   name: 'vendor',
-		   minChunks: Infinity,
-		   filename: ((inProduction) ? 'vendor-[chunkhash].js' : 'vendor.js'),
-		 }),
+			name: 'vendor',
+			minChunks: Infinity,
+			filename: ((inProduction) ? 'vendor-[chunkhash].js' : 'vendor.js'),
+		}),
 
 		/**
 		 * Clean out Dist dir

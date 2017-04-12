@@ -1,18 +1,13 @@
-<template lang="html">
-	<section class="hero is-info">
-	  <div class="hero-body">
-	    <div class="container">
-	      <h1 class="title">
-	        Primary bold title
-	      </h1>
-	      <h2 class="subtitle">
-	        Primary bold subtitle
-	      </h2>
-		  <a class="button is-dark" @click="notifyparent">Notify parent</a>
-		  <a class="button is-success" @click="runFromChild">Run parent function from child</a>
-	    </div>
-	  </div>
-	</section>
+<template lang="pug">
+section.hero.is-info
+	.hero-body
+		.container
+			h1.title
+				| Primary bold title
+			h2.subtitle
+				| Primary bold subtitle
+			a.button.is-dark(@click='notifyparent') Notify parent
+			a.button.is-success(@click='runFromChild') Run parent function from child
 </template>
 
 <script>

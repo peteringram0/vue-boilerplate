@@ -1,16 +1,16 @@
 <template lang="pug">
-	header.nav
-		.container
-			.nav-left
-				a.nav-item.is-brand
-					img(alt='logo')
-			span.nav-toggle(@click="toggleNav", :class="navExpanded")
-				span
-				span
-				span
-			.nav-right.nav-menu(:class="navExpanded")
-				router-link.nav-item.is-tab(v-for='item in items', :to='item.url', v-if='!item.children') {{ item.name }}
-				a.nav-item.is-tab Log out
+header.nav
+	.container
+		.nav-left
+			a.nav-item.is-brand
+				img(alt='logo')
+		span.nav-toggle(@click="toggleNav", :class="navExpanded")
+			span
+			span
+			span
+		.nav-right.nav-menu(:class="navExpanded")
+			router-link.nav-item.is-tab(v-for='item in items', :to='item.url', v-if='!item.children') {{ item.name }}
+			a.nav-item.is-tab Log out
 </template>
 
 <style lang="stylus" scoped>
