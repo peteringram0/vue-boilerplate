@@ -8,7 +8,7 @@ Vue.use(VueRouter);
  */
 export default new VueRouter({
 	mode: 'history',
-	linkActiveClass: 'uk-active',
+	linkActiveClass: 'is-active',
 	routes: [
 		{path: '/home', component: require('./views/home.vue')},
 		{path: '/about', component: require('./views/about.vue')},

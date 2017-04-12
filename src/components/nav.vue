@@ -1,48 +1,53 @@
-<template>
-<!-- <b-navbar toggleable type="inverse" variant="primary" class="mb-3">
-	<b-nav-toggle target="nav_collapse"></b-nav-toggle>
-
-	<b-link class="navbar-brand" to="/">
-		<span>Logo</span>
-	</b-link>
-
-	<b-collapse is-nav id="nav_collapse">
-
-		<b-nav is-nav-bar>
-
-			<b-nav-item v-for="item in items" :to="item.url" v-show="!item.children">{{ item.name }}</b-nav-item>
-
-			<b-nav-item-dropdown :text="item.name" right-alignment v-show="item.children" v-for="item in items">
-				<b-dropdown-item :to="child.url" v-for="child in item.children">{{ child.name }}</b-dropdown-item>
-			</b-nav-item-dropdown>
-
-		</b-nav>
-
-	</b-collapse>
-</b-navbar> -->
-
-<nav class="nav has-shadow">
-	<div class="container">
-		<div class="nav-left">
-			<a class="nav-item">
-				<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
-			</a>
-			<router-link class="nav-item is-tab" v-for="item in items" :to="item.url" v-show="!item.children">{{ item.name }}</router-link>
-		</div>
-		<span class="nav-toggle">
-      <span></span>
-		<span></span>
-		<span></span>
-		</span>
-		<div class="nav-right nav-menu">
-			<a class="nav-item is-tab">Log out</a>
-		</div>
-	</div>
-</nav>
+<template lang="pug">
+	header.nav
+		.container
+			.nav-left
+				a.nav-item.is-brand
+					img(alt='logo')
+			span.nav-toggle(@click="toggleNav", :class="navExpanded")
+				span
+				span
+				span
+			.nav-right.nav-menu(:class="navExpanded")
+				router-link.nav-item.is-tab(v-for='item in items', :to='item.url', v-if='!item.children') {{ item.name }}
+				a.nav-item.is-tab Log out
 </template>
+
+<style lang="stylus" scoped>
+.nav-item
+	&.is-active, &:hover
+		border-bottom-color white !important
+</style>
 
 <script>
 export default {
-	props: ['items']
+	props: {
+		items: ''
+	},
+	data() {
+		return {
+			navExpanded: false
+		}
+	},
+	methods: {
+
+		/**
+		 * Toggle the active state on the navigation
+		 */
+		toggleNav() {
+			this.navExpanded = ((!this.navExpanded) ? 'is-active' : false)
+		}
+
+	},
+	watch: {
+
+		/**
+		 * On route changes collapse the nav
+		 */
+		$route() {
+			this.navExpanded = false;
+		}
+
+	}
 }
 </script>

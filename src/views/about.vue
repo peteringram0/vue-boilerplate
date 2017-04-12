@@ -1,5 +1,5 @@
 <template lang="html">
-
+<div class="container mt-2">
 	<div class="tile is-ancestor">
   <div class="tile is-vertical is-8">
     <div class="tile">
@@ -45,7 +45,7 @@
     </article>
   </div>
 </div>
-
+</div>
 </template>
 
 <script>

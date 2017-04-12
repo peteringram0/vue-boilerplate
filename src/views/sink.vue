@@ -1,14 +1,30 @@
 <template>
-<div>
-	<b-card overlay img="http://placeskull.com/200/200/E8117F/-1/0" class="mb-2">
-        Overlay cards are cute!
-    </b-card>
+<div class="container mt-2">
+	<a class="button mb-2" @click="alertCustom">Alert !!</a>
 
-	<b-form-checkbox v-model="state" value="accepted" unchecked-value="not_accepted">
-		I accept terms and use
- 	</b-form-checkbox>
+	<b-table
+	    :data="tableData"
+	    :bordered="isBordered"
+	    :striped="isStriped"
+	    :narrowed="isNarrowed"
+	    :selectable="isSelectable"
+	    :checkable="isCheckable"
+	    :mobile-cards="hasMobileCards"
+	    :paginated="isPaginated"
+	    :per-page="perPage"
+	    :pagination-simple="isPaginationSimple"
+	    default-sort="first_name"
+	    @check="checked"
+	    @select="selected">
 
-	<div>State: <strong>{{state}}</strong></div>
+	    <b-table-column field="id" label="ID" width="40" sortable numeric></b-table-column>
+	    <b-table-column field="first_name" label="First Name" sortable></b-table-column>
+	    <b-table-column field="last_name" label="Last Name" sortable></b-table-column>
+	    <b-table-column field="date" label="Date" sortable :format="formatDate"></b-table-column>
+	    <b-table-column field="gender" label="Gender"></b-table-column>
+
+	</b-table>
+
 </div>
 </template>
 
@@ -17,14 +33,43 @@
 export default {
 	data() {
 		return {
-			text: 'hi',
-			state: 'please_accept'
+			tableData: [
+                {"id":1,"first_name":"Ryan","last_name":"Hill","gender":"Male"},
+                {"id":2,"first_name":"Kathryn","last_name":"Ward","gender":"Female"},
+                {"id":3,"first_name":"Sharon","last_name":"Welch","gender":"Female"},
+                {"id":4,"first_name":"Beverly","last_name":"Gutierrez","gender":"Female"},
+                {"id":5,"first_name":"Gloria","last_name":"Boyd","gender":"Female"}
+            ],
+            checkItems: [],
+            selItem: {},
+            isBordered: false,
+            isStriped: false,
+            isNarrowed: false,
+            isSelectable: false,
+            isCheckable: false,
+            hasMobileCards: true,
+            isPaginated: true,
+            isPaginationSimple: false,
+            perPage: 10
 		}
 	},
 	methods: {
-		clickEvent() {
-			UIkit.notification('You clicked me!!', {pos: 'top-right'});
-		}
+		checked(items, item) {
+            this.checkItems = items
+        },
+        selected(item) {
+            this.selItem = item
+        },
+        formatDate(value, row) {
+            return new Date(value).toLocaleDateString()
+        },
+		alertCustom() {
+            this.$dialog.alert({
+                title: 'Title Alert',
+                message: 'I have a title, a custom button and <b>HTML</b>!',
+                confirmText: 'Cool!'
+            })
+        }
 	}
 }
 </script>

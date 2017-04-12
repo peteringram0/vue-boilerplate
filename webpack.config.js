@@ -19,7 +19,7 @@ var inProduction = (process.env.NODE_ENV === 'production');
 module.exports = {
 	entry: {
 		app: './src/app.js',
-		vendor: ['vue/dist/vue.js', 'vue-router', 'axios', 'buefy']
+		vendor: ['vue/dist/vue.js', 'vue-router', 'axios', 'buefy'] // lodash
 	},
 	output: {
 		path: path.join(__dirname, '/dist'),
@@ -57,7 +57,9 @@ module.exports = {
 		]
 	},
 	resolve: {
-		alias: {}
+		alias: {
+			'vue$': 'vue/dist/vue.js'
+		}
 	},
 	plugins: [
 

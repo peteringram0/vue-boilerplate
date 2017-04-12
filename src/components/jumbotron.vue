@@ -1,5 +1,5 @@
 <template lang="html">
-	<section class="hero is-medium is-primary is-bold">
+	<section class="hero is-info">
 	  <div class="hero-body">
 	    <div class="container">
 	      <h1 class="title">
@@ -8,12 +8,11 @@
 	      <h2 class="subtitle">
 	        Primary bold subtitle
 	      </h2>
-		  <a class="button is-primary" @click="notifyparent">Notify parent</a>
-		  <a class="button is-primary" @click="runFromChild">Run parent function from child</a>
+		  <a class="button is-dark" @click="notifyparent">Notify parent</a>
+		  <a class="button is-success" @click="runFromChild">Run parent function from child</a>
 	    </div>
 	  </div>
 	</section>
-
 </template>
 
 <script>

@@ -1,8 +1,9 @@
 <template lang="pug">
-.uk-background-1.pb-3
-	.container
-		nav-bar(:items="navItems")
-		router-view.uk-margin-top
+	section
+		.hero.is-info
+			.hero-head
+				nav-bar(:items="navItems")
+		router-view
 </template>
 
 <style lang="stylus">
@@ -31,16 +32,6 @@ export default {
 				{
 					name: 'Sink',
 					url: '/sink'
-				},
-				{
-					name: 'Parent',
-					children: [{
-						name: 'Child 1',
-						url: '#'
-					}, {
-						name: 'Child 2',
-						url: '#'
-					}]
 				}
 			]
 		}

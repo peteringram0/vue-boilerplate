@@ -1,17 +1,18 @@
 <template>
 <section>
-	<jumbotron></jumbotron>
 	<jumbotron @notifyparent="notify" :function-for-child="runInsideChild"></jumbotron>
-	<input type="text" v-model="text"> text: {{ text }}
+	<level></level>
 </section>
 </template>
 
 <script>
 import Jumbotron from './../components/jumbotron.vue';
+import Level from './../components/level.vue';
 
 export default {
 	components: {
-		Jumbotron
+		Jumbotron,
+		Level
 	},
 	watch: {
 		text: function(val) {
@@ -22,12 +23,15 @@ export default {
 
 		// Notify from child to trigger this
 		notify() {
-			alert('PING FROM PARENT');
+			this.$toast.open('PING FROM PARENT')
 		},
 
 		// Check a child can run this
 		runInsideChild() {
-			alert('This function is in home.vue but ran in a child component');
+			this.$toast.open({
+				message: 'This function is in home.vue but ran in a child component',
+				type: 'is-success'
+			})
 		},
 
 	},
