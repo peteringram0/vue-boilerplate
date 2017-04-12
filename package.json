@@ -24,7 +24,6 @@
   },
   "devDependencies": {
     "autoprefixer-core": "^6.0.1",
-    "axios": "^0.15.3",
     "babel": "^6.5.2",
     "babel-core": "^6.21.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.2",
@@ -50,18 +49,17 @@
     "template-html-loader": "^1.0.0",
     "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
     "uglifyjs-webpack-plugin": "^0.3.1",
-    "uikit": "^3.0.0-beta.18",
-    "vue": "^2.1.6",
     "vue-loader": "^10.0.2",
-    "vue-router": "^2.3.0",
     "vue-template-compiler": "^2.1.6",
     "webpack": "^2.3.1",
-    "webpack-dev-server": "2"
+    "webpack-dev-server": "2",
+    "ava": "^0.18.2",
+    "browser-env": "^2.0.28"
   },
   "dependencies": {
-    "ava": "^0.18.2",
-    "bootstrap": "4.0.0-alpha.6",
-    "bootstrap-vue": "^0.11.0",
-    "browser-env": "^2.0.28"
+      "vue": "^2.1.6",
+      "vue-router": "^2.3.0",
+      "axios": "^0.15.3",
+      "buefy": "^0.1.4"
   }
 }

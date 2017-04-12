@@ -1,12 +1,19 @@
 <template lang="html">
-	<div class="jumbotron jumbotron-fluid">
-		<div class="container">
-	    	<h1 class="display-3">Fluid jumbotron</h1>
-	    	<p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-			<button class="btn btn-primary" @click="notifyparent">Notify parent</button>
-			<button class="btn btn-primary" @click="runFromChild">Run parent function from child</button>
-	  	</div>
-	</div>
+	<section class="hero is-medium is-primary is-bold">
+	  <div class="hero-body">
+	    <div class="container">
+	      <h1 class="title">
+	        Primary bold title
+	      </h1>
+	      <h2 class="subtitle">
+	        Primary bold subtitle
+	      </h2>
+		  <a class="button is-primary" @click="notifyparent">Notify parent</a>
+		  <a class="button is-primary" @click="runFromChild">Run parent function from child</a>
+	    </div>
+	  </div>
+	</section>
+
 </template>
 
 <script>

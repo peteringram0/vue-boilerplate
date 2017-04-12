@@ -7,7 +7,7 @@ Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://
 * Single file approach (With extra Stylus file)
 * Production builds (Minified)
 * Separate vendor file
-* UIkit included
+* Bulma & Buefy included
 * Development environment with history and hot reading
 
 Todo

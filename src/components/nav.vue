@@ -1,5 +1,5 @@
 <template>
-<b-navbar toggleable type="inverse" variant="primary" class="mb-3">
+<!-- <b-navbar toggleable type="inverse" variant="primary" class="mb-3">
 	<b-nav-toggle target="nav_collapse"></b-nav-toggle>
 
 	<b-link class="navbar-brand" to="/">
@@ -19,7 +19,26 @@
 		</b-nav>
 
 	</b-collapse>
-</b-navbar>
+</b-navbar> -->
+
+<nav class="nav has-shadow">
+	<div class="container">
+		<div class="nav-left">
+			<a class="nav-item">
+				<img src="http://bulma.io/images/bulma-logo.png" alt="Bulma logo">
+			</a>
+			<router-link class="nav-item is-tab" v-for="item in items" :to="item.url" v-show="!item.children">{{ item.name }}</router-link>
+		</div>
+		<span class="nav-toggle">
+      <span></span>
+		<span></span>
+		<span></span>
+		</span>
+		<div class="nav-right nav-menu">
+			<a class="nav-item is-tab">Log out</a>
+		</div>
+	</div>
+</nav>
 </template>
 
 <script>

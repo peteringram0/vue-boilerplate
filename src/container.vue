@@ -3,7 +3,6 @@
 	.container
 		nav-bar(:items="navItems")
 		router-view.uk-margin-top
-		button.btn.btn-primary Test Button
 </template>
 
 <style lang="stylus">
@@ -14,6 +13,9 @@
 import NavBar from './components/nav.vue';
 
 export default {
+	mounted() {
+		this.$snackbar.open(`Default, positioned bottom-right with a green 'OK' button`);
+	},
 	components: {
 		NavBar
 	},
