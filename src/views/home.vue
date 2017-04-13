@@ -3,16 +3,30 @@ section
 	jumbotron(@notifyparent='notify', :function-for-child='runInsideChild')
 	level
 	jumbotron(@notifyparent='notify', :function-for-child='runInsideChild', title="Info Bar", :buttons="false", :subtitle="false")
+	.section.mt-2
+		.container
+			.columns.is-multiline
+				.column
+					card
+				.column
+					card
+				.column
+					card
+				.column
+					card
+	jumbotron(@notifyparent='notify', :function-for-child='runInsideChild', title="New Bit Here", :buttons="false", :subtitle="false")
 </template>
 
 <script>
 import Jumbotron from './../components/jumbotron.vue';
 import Level from './../components/level.vue';
+import Card from './../components/card.vue';
 
 export default {
 	components: {
 		Jumbotron,
-		Level
+		Level,
+		Card
 	},
 	watch: {
 		text: function(val) {
