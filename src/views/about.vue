@@ -15,7 +15,7 @@
 						p.title Middle tile
 						p.subtitle With an image
 						figure.image.is-4by3
-							img(src='http://bulma.io/images/placeholders/640x480.png')
+							img(src='http://placehold.it/600x600')
 			.tile.is-parent
 				article.tile.is-child.notification.is-danger
 					p.title Wide tile

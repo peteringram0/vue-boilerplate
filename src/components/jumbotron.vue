@@ -2,18 +2,30 @@
 section.hero.is-info
 	.hero-body
 		.container
-			h1.title
-				| Primary bold title
-			h2.subtitle
-				| Primary bold subtitle
-			a.button.is-dark(@click='notifyparent') Notify parent
-			a.button.is-success(@click='runFromChild') Run parent function from child
+			h1.title {{ title }}
+			h2.subtitle(v-if="subtitle") {{ subtitle }}
+			div.field.is-grouped(v-if="buttons")
+				p.control
+					a.button.is-dark(@click='notifyparent') Notify parent
+				p.control
+					a.button.is-dark.is-outlined(@click='runFromChild') Run parent function from child
 </template>
 
 <script>
 export default {
-	props: ['function-for-child'],
-
+	props: {
+		'function-for-child': {
+		},
+		'buttons': {
+			default: true
+		},
+		'title': {
+			default: 'Title'
+		},
+		'subtitle': {
+			default: 'Subtitle'
+		}
+	},
 	data() {
 		return {
 

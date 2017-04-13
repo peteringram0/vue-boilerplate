@@ -1,9 +1,9 @@
 <template lang="pug">
-	section
-		.hero.is-info
-			.hero-head
-				nav-bar(:items="navItems")
-		router-view
+div
+	.hero.is-info
+		.hero-head
+			nav-bar(:items="navItems")
+	router-view
 </template>
 
 <style lang="stylus">
@@ -32,6 +32,10 @@ export default {
 				{
 					name: 'Sink',
 					url: '/sink'
+				},
+				{
+					name: 'Form',
+					url: '/form'
 				}
 			]
 		}

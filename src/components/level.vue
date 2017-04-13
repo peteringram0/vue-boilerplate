@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.level.pt-2.pb-2
+nav.level.pt-3
 	.level-item.has-text-centered
 		div
 			p.heading Tweets

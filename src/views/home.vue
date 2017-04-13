@@ -2,6 +2,7 @@
 section
 	jumbotron(@notifyparent='notify', :function-for-child='runInsideChild')
 	level
+	jumbotron(@notifyparent='notify', :function-for-child='runInsideChild', title="Info Bar", :buttons="false", :subtitle="false")
 </template>
 
 <script>
