@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const path = require('path');
-const glob = require('glob');
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -10,20 +9,17 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
-// Production flat
-var inProduction = (process.env.NODE_ENV === 'production');
-
 /**
  * Module
  */
 module.exports = {
 	entry: {
 		app: './src/app.js',
-		vendor: ['vue/dist/vue.js', 'vue-router', 'axios', 'buefy'] // lodash
+		vendor: ['vue', 'vue-router', 'axios']
 	},
 	output: {
-		path: path.join(__dirname, '/dist'),
-		filename: ((inProduction) ? '[name].[chunkhash].js' : '[name].js'),
+		path: path.join(__dirname, '/public'),
+		filename: ((process.env.NODE_ENV) ? '[name].[chunkhash].js' : '[name].js'),
 		publicPath: '/'
 	},
 	module: {
@@ -56,11 +52,6 @@ module.exports = {
 			}
 		]
 	},
-	resolve: {
-		alias: {
-			'vue$': 'vue/dist/vue.js'
-		}
-	},
 	plugins: [
 
 		/**
@@ -69,13 +60,13 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'vendor',
 			minChunks: Infinity,
-			filename: ((inProduction) ? 'vendor-[chunkhash].js' : 'vendor.js'),
+			filename: ((process.env.NODE_ENV) ? 'vendor-[chunkhash].js' : 'vendor.js'),
 		}),
 
 		/**
-		 * Clean out Dist dir
+		 * Clean out public dir
 		 */
-		new CleanWebpackPlugin(['dist'], {
+		new CleanWebpackPlugin(['public'], {
 			root: __dirname,
 			verbose: true,
 			dry: false
@@ -86,25 +77,25 @@ module.exports = {
 		 */
 		new CopyWebpackPlugin([{
 			from: __dirname + '/src/assets',
-			to: __dirname + '/dist'
+			to: __dirname + '/public/assets'
 		}]),
 
 		/**
 		 * Extract all of the stylus out into this CSS file
 		 */
-		new ExtractTextPlugin(((inProduction) ? '[name].[chunkhash].css' : '[name].css')),
+		new ExtractTextPlugin(((process.env.NODE_ENV) ? '[name].[chunkhash].css' : '[name].css')),
 
 		/**
 		 * Inject files into HTML
 		 */
 		new HtmlWebpackPlugin({
-			filename: __dirname + '/dist/index.html',
+			filename: __dirname + '/public/index.html',
 			template: __dirname + '/src/index.ejs'
 		})
 
 	],
 	devServer: {
-		contentBase: ('./dist'),
+		contentBase: ('./public'),
 		historyApiFallback: true
 	},
 };
@@ -112,16 +103,24 @@ module.exports = {
 /**
  * NON Producton mode
  */
-if (!inProduction) {
+if (!process.env.NODE_ENV) {
+
+    // Add source maps
 	module.exports.devtool = 'source-map'
+
 }
 
 /**
  * Producton mode
  */
-if (inProduction) {
+if (process.env.NODE_ENV) {
 	module.exports.plugins.push(
+
+	    // Uglify
 		new UglifyJSPlugin(),
+
+		// Optimize
 		new OptimizeCssAssetsPlugin()
+
 	)
 }

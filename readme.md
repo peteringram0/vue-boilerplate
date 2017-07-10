@@ -7,26 +7,22 @@ Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://
 * Single file approach (With extra Stylus file)
 * Production builds (Minified)
 * Separate vendor file
-* Bulma & Buefy included
 * Development environment with history and hot reading
-
-Todo
-* More FN tests (Test methods)
+* ENV var's
 
 ![alt tag](https://media.giphy.com/media/3o6UBhjHobLFgEmrJu/giphy.gif)]
 
-# Setup
-````javascript
-$ yarn install
-$ yarn run setup
-````
-
 # Development
 ````javascript
-$ yarn run serve
+$ yarn install
+$ yarn dev
 ````
 
 # Production
 ````javascript
-$ yarn run prod
+$ yarn install
+$ yarn prod
 ````
+
+## TODO
+* add in test coverage 

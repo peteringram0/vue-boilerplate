@@ -1,5 +1,7 @@
 yarn.lock
 /node_modules
 /.idea
-/dist/*
-/public/*
+/dist
+/public
+/coverage
+/.nyc_output

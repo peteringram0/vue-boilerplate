@@ -34,8 +34,11 @@ export default {
 
 		},
 		onClear() {
-			this.errors.clear();
-			console.log('PING');
+
+			// this.$nextTick(() => {
+				this.errors.clear();
+			// });
+
 		}
 	}
 }
