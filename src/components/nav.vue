@@ -21,9 +21,8 @@ header.nav
 
 <script>
 export default {
-	props: {
-		items: ''
-	},
+    name: 'nav',
+	props: ['items'],
 	data() {
 		return {
 			navExpanded: false

@@ -1,28 +1,20 @@
-import Vue from 'vue';
 import test from 'ava';
+import { mount } from 'avoriaz';
 
 import NavBar from './../src/components/nav.vue';
 
-let vm;
-
-test.beforeEach(t => {
-
-	let N = Vue.extend(NavBar);
-
-	vm = new N({
-		propsData: {
-			items: [{
-				name: 'test 1',
-				url: '/test1'
-			}]
-		}
-	}).$mount();
-
-});
 
 test('Check expanding & collapsing the navbar', t => {
 
-    t.true(true);
+    let wrapper = mount(NavBar, {
+        items: ['one', 'two']
+    });
+
+    t.true(wrapper.hasClass('nav'));
+
+    // console.log(wrapper);
+
+    console.log(wrapper.name);
 
 	// t.is(vm.navExpanded, false);
 	// vm.toggleNav();
