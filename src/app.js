@@ -5,6 +5,7 @@
  */
 import './bootstrap';
 
+import Vue from 'vue';
 import router from './app.router';
 import Container from './container.vue';
 

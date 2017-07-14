@@ -1,13 +1,13 @@
 <template lang="pug">
-h2 Sorry page not found
+    h2 Sorry page not found
 </template>
 
 <script>
-export default{
-    data(){
-		return {
-			text: 'hi'
-		}
+    export default{
+        data(){
+            return {
+                text: 'hi'
+            }
+        }
     }
-}
 </script>

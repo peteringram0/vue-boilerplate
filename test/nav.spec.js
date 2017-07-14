@@ -7,14 +7,20 @@ import NavBar from './../src/components/nav.vue';
 test('Check expanding & collapsing the navbar', t => {
 
     let wrapper = mount(NavBar, {
-        items: ['one', 'two']
+        propsData: {
+            items: [{
+                name: 'Home',
+                url: '/home'
+            }, {
+                name: 'About',
+                url: '/about'
+            }]
+        }
     });
 
-    t.true(wrapper.hasClass('nav'));
+    // t.true(wrapper.hasClass('nav'));
 
-    // console.log(wrapper);
-
-    console.log(wrapper.name);
+    // console.log(wrapper.name);
 
 	// t.is(vm.navExpanded, false);
 	// vm.toggleNav();

@@ -21,7 +21,6 @@ header.nav
 
 <script>
 export default {
-    name: 'nav',
 	props: ['items'],
 	data() {
 		return {

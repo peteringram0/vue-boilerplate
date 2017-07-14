@@ -1,4 +1,8 @@
-'use strict';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+// Use the VueRouter
+Vue.use(VueRouter);
 
 /**
  * Routes
@@ -10,22 +14,12 @@ export default new VueRouter({
 		{
 			name: 'Home',
 			path: '/home',
-			component: require('./views/home.vue')
+            component: require('./views/home.vue')
 		},
 		{
 			name: 'About',
 			path: '/about',
 			component: require('./views/about.vue')
-		},
-		{
-			name: 'Sink',
-			path: '/sink',
-			component: require('./views/sink.vue')
-		},
-		{
-			name: 'Form',
-			path: '/form',
-			component: require('./views/form.vue')
 		},
 		{path: '*', component: require('./views/404.vue') }
 	]
