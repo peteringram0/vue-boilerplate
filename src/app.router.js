@@ -21,6 +21,7 @@ export default new VueRouter({
 			path: '/about',
 			component: require('./views/about.vue').default
 		},
-		{path: '*', component: require('./views/404.vue').default }
+		{path: '*', component: require('./views/404.vue').default },
+        {path: '/', redirect: { path: '/home' }}
 	]
 });

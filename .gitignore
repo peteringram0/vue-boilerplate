@@ -3,5 +3,4 @@ yarn.lock
 /.idea
 /dist
 /public
-/coverage
-/.nyc_output
+

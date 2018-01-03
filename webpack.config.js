@@ -9,6 +9,26 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
+// Assign in the mode
+let mode = process.env.NODE_ENV;
+
+function packageSort(packages) {
+    return function sort(left, right) {
+        var leftIndex = packages.indexOf(left.names[0]);
+        var rightindex = packages.indexOf(right.names[0]);
+
+        if (leftIndex < 0 || rightindex < 0) {
+            throw "unknown package";
+        }
+
+        if (leftIndex > rightindex) {
+            return 1;
+        }
+
+        return -1;
+    }
+};
+
 /**
  * Module
  */
@@ -24,7 +44,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, '/public'),
-		filename: ((process.env.NODE_ENV) ? '[name].[chunkhash].js' : '[name].js'),
+		filename: ((mode === 'production') ? '[name].[chunkhash].js' : '[name].js'),
 		publicPath: '/'
 	},
 	module: {
@@ -48,25 +68,13 @@ module.exports = {
 						})
 					],
 					loaders: {
-						stylus: ExtractTextPlugin.extract({
-							use: ['css-loader', 'stylus-loader'],
-							//fallbackLoader: 'vue-style-loader'
-						})
+						stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
 					}
 				},
 			}
 		]
 	},
 	plugins: [
-
-		/**
-		 * Chunk
-		 */
-		new webpack.optimize.CommonsChunkPlugin({
-			name: 'vendor',
-			minChunks: Infinity,
-			filename: ((process.env.NODE_ENV) ? 'vendor-[chunkhash].js' : 'vendor.js'),
-		}),
 
 		/**
 		 * Clean out public dir
@@ -88,14 +96,15 @@ module.exports = {
 		/**
 		 * Extract all of the stylus out into this CSS file
 		 */
-		new ExtractTextPlugin(((process.env.NODE_ENV) ? '[name].[chunkhash].css' : '[name].css')),
+		new ExtractTextPlugin(((process.env.NODE_ENV === 'production') ? '[name].[chunkhash].css' : '[name].css')),
 
 		/**
 		 * Inject files into HTML
 		 */
 		new HtmlWebpackPlugin({
 			filename: __dirname + '/public/index.html',
-			template: __dirname + '/src/index.ejs'
+			template: __dirname + '/src/index.ejs',
+            chunksSortMode: packageSort(['vendor', 'app'])
 		})
 
 	],
@@ -108,7 +117,7 @@ module.exports = {
 /**
  * NON Producton mode
  */
-if (!process.env.NODE_ENV) {
+if (process.env.NODE_ENV !== 'production') {
 
     // Add source maps
 	module.exports.devtool = 'source-map'
@@ -116,16 +125,31 @@ if (!process.env.NODE_ENV) {
 }
 
 /**
- * Producton mode
+ * Production mode
  */
-if (process.env.NODE_ENV) {
-	module.exports.plugins.push(
+if (process.env.NODE_ENV === 'production') {
 
-	    // Uglify
+    module.exports.plugins.push(
 		new UglifyJSPlugin(),
+		new OptimizeCssAssetsPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+        	name: 'vendor',
+        	minChunks: Infinity,
+        	filename: 'vendor-[chunkhash].js'
+        })
+	);
 
-		// Optimize
-		new OptimizeCssAssetsPlugin()
+    // Use prod version of vue
+    module.exports.resolve.alias.vue$ = 'vue/dist/vue.min';
 
-	)
+}
+
+/**
+ * Production mode
+ */
+if (process.env.NODE_ENV === 'testing') {
+
+    // Use prod version of vue
+    module.exports.resolve.alias.vue$ = 'vue/dist/vue.min';
+    
 }
