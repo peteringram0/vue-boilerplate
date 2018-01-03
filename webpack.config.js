@@ -151,5 +151,5 @@ if (process.env.NODE_ENV === 'testing') {
 
     // Use prod version of vue
     module.exports.resolve.alias.vue$ = 'vue/dist/vue.min';
-    
+
 }

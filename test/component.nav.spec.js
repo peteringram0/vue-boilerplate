@@ -1,23 +1,24 @@
 // test/component-a.spec.js
-var Vue = require('vue')
-var ComponentA = require('./../src/components/nav.vue')
+let Vue = require('vue');
+let Nav = require('./../src/components/nav.vue').default;
 
 describe('nav.vue', function () {
 
-    // asserting JavaScript options
-    it('should have correct message', function () {
-        // expect(ComponentA.data().msg).toBe('Hello from Component A!')
-        expect(true).toBe(true);
-    })
+    it('Test from outside', () => {
 
-    // asserting rendered result by actually rendering the component
-    // it('should render correct message', function () {
-    //     var vm = new Vue({
-    //         template: '<div><test></test></div>',
-    //         components: {
-    //             'test': ComponentA
-    //         }
-    //     }).$mount()
-    //     expect(vm.$el.querySelector('h2.red').textContent).toBe('Hello from Component A!')
-    // })
-})
+        expect(Nav.data().navExpanded).toBe(false)
+
+    });
+
+    it('Test from inside', function () {
+
+        let Constructor = Vue.extend(Nav);
+        let vm = new Constructor().$mount();
+
+        vm.toggleNav();
+
+        expect(vm.navExpanded).toBe('is-active');
+
+    });
+
+});
