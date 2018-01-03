@@ -9,7 +9,7 @@
     "prod": "NODE_ENV=production webpack --progress --hide-modules --config webpack.config.js",
     "dev": "NODE_ENV=develop webpack --progress --hide-modules --config webpack.config.js",
     "serve": "webpack-dev-server --open --inline --hot",
-    "test:fn": "NODE_ENV=testing karma start karma.conf.js"
+    "test:fn": "NODE_ENV=testing karma start test/unit/karma.conf.js --single-run"
   },
   "babel": {
     "presets": [

@@ -1,4 +1,4 @@
-let webpackConfig = require('./webpack.config.js');
+let webpackConfig = require('../../webpack.config.js');
 delete webpackConfig.entry;
 
 // karma.conf.js
@@ -7,10 +7,10 @@ module.exports = function (config) {
         browsers: ['PhantomJS'],
         frameworks: ['jasmine'],
         files: [
-            'test/**/*.spec.js'
+            './specs/*.spec.js'
         ],
         preprocessors: {
-            'test/**/*.spec.js': ['webpack']
+            './specs/*.spec.js': ['webpack']
         },
         // use the webpack config
         webpack: webpackConfig,

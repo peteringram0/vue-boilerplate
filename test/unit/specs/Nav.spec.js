@@ -1,5 +1,5 @@
 import { mount } from 'avoriaz';
-import Nav from './../src/components/nav.vue';
+import Nav from './../../../src/components/nav.vue';
 
 describe('nav.vue', function () {
 
