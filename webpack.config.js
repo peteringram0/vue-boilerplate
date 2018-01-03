@@ -13,6 +13,11 @@ const autoprefixer = require('autoprefixer');
  * Module
  */
 module.exports = {
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
 	entry: {
 		app: './src/app.js',
 		vendor: ['vue', 'vue-router', 'axios']
@@ -44,19 +49,14 @@ module.exports = {
 					],
 					loaders: {
 						stylus: ExtractTextPlugin.extract({
-							loader: ['css-loader', 'stylus-loader'],
-							fallbackLoader: 'vue-style-loader'
+							use: ['css-loader', 'stylus-loader'],
+							//fallbackLoader: 'vue-style-loader'
 						})
 					}
 				},
 			}
 		]
 	},
-    resolve: {
-        alias: {
-            'vue$': 'vue/dist/vue.esm.js'
-        }
-    },
 	plugins: [
 
 		/**

@@ -9,7 +9,7 @@ header.nav
 			span
 			span
 		.nav-right.nav-menu(:class="navExpanded")
-			router-link.nav-item.is-tab(v-for='item in items', :to='item.url', v-if='!item.children') {{ item.name }}
+			router-link.nav-item.is-tab(v-for='item in items', :key="item.url", :to='item.url', v-if='!item.children') {{ item.name }}
 			a.nav-item.is-tab Log out
 </template>
 
