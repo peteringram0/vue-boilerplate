@@ -1,20 +1,16 @@
-// we can just use the exact same webpack config by requiring it
-// however, remember to delete the original entry since we don't
-// need it during tests
-var webpackConfig = require('./webpack.config.js')
-delete webpackConfig.entry
-
+let webpackConfig = require('./webpack.config.js');
+delete webpackConfig.entry;
 
 // karma.conf.js
 module.exports = function (config) {
     config.set({
         browsers: ['PhantomJS'],
         frameworks: ['jasmine'],
-        // this is the entry file for all our tests.
-        files: ['test/index.js'],
-        // we will pass the entry file to webpack for bundling.
+        files: [
+            'test/**/*.spec.js'
+        ],
         preprocessors: {
-            'test/index.js': ['webpack']
+            'test/**/*.spec.js': ['webpack']
         },
         // use the webpack config
         webpack: webpackConfig,
@@ -22,6 +18,7 @@ module.exports = function (config) {
         webpackMiddleware: {
             noInfo: true
         },
-        singleRun: true
+        singleRun: true,
+        reporters: ['spec'],
     })
-}
+};
