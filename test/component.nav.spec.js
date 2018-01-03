@@ -1,6 +1,5 @@
-// test/component-a.spec.js
-let Vue = require('vue/dist/vue.min');
-let Nav = require('./../src/components/nav.vue').default;
+import { mount } from 'avoriaz';
+import Nav from './../src/components/nav.vue';
 
 describe('nav.vue', function () {
 
@@ -12,25 +11,26 @@ describe('nav.vue', function () {
 
     it('Test from inside', function () {
 
-        let Constructor = Vue.extend(Nav);
-        let vm = new Constructor().$mount();
+        let wrapper = mount(Nav);
 
-        vm.toggleNav();
+        wrapper.vm.toggleNav();
 
-        expect(vm.navExpanded).toBe('is-active');
+        expect(wrapper.vm.navExpanded).toBe('is-active');
 
     });
 
     it('Testing spys', function () {
 
-        let Constructor = Vue.extend(Nav);
-        let vm = new Constructor().$mount();
+        // let Constructor = Vue.extend(Nav);
+        // let vm = new Constructor().$mount();
 
-        spyOn(vm, 'otherMethod');
+        let wrapper = mount(Nav);
 
-        vm.testSpy();
+        spyOn(wrapper.vm, 'otherMethod');
 
-        expect(vm.otherMethod).toHaveBeenCalled();
+        wrapper.vm.testSpy();
+
+        expect(wrapper.vm.otherMethod).toHaveBeenCalled();
 
     });
 
