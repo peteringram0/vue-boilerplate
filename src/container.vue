@@ -5,7 +5,7 @@
 </template>
 
 <style lang="stylus">
-    @import "../styles/styles"
+    @import "./styles/styles"
 </style>
 
 <script>
