@@ -6,7 +6,7 @@
   "comments": false,
   "env": {
     "test": {
-      "presets": ["env", "stage-0"],
+      "presets": ["es2015", "stage-0"],
       "plugins": [ "istanbul" ]
     }
   }
