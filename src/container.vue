@@ -15,6 +15,9 @@
         components: {
             NavBar
         },
+        mounted() {
+            console.log(process.env.API_URL);
+        },
         data() {
             return {
                 navItems: [{

@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const _ = require('lodash');
 
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -11,6 +12,9 @@ const autoprefixer = require('autoprefixer');
 
 // Assign in the mode
 let mode = process.env.NODE_ENV;
+
+if(mode === undefined)
+    mode = 'testing';
 
 function packageSort(packages) {
     return function sort(left, right) {
@@ -29,9 +33,16 @@ function packageSort(packages) {
     }
 };
 
-function resolve (dir) {
+function resolve(dir) {
     return path.join(__dirname, '..', dir)
 }
+
+// Load in the config file
+let config = require(resolve('config') + '/config.' + mode + '.js');
+
+console.log(_.merge({
+    NODE_ENV: process.env.NODE_ENV,
+}, config));
 
 /**
  * Module
@@ -43,81 +54,93 @@ module.exports = {
             '@': resolve('src')
         }
     },
-	entry: {
-		app: './src/app.js',
-		vendor: ['vue', 'vue-router', 'axios']
-	},
-	output: {
-		path: resolve('public'),
-		filename: ((mode === 'production') ? '[name].[chunkhash].js' : '[name].js'),
-		publicPath: '/'
-	},
-	module: {
-		rules: [
-		    {
-				test: /\.js$/,
-				loader: 'babel-loader',
-				exclude: /node_modules/,
-				query: {
-					presets: ['es2015', 'stage-0']
-				}
-			},
-			{
-				test: /\.vue$/,
-				loader: 'vue-loader',
-				exclude: /node_modules/,
-				options: {
-					postcss: [
-						autoprefixer({
-							cascade: false,
-							browsers: ['> 0%']
-						})
-					],
-					loaders: {
-						stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
-					}
-				},
-			}
-		]
-	},
-	plugins: [
+    entry: {
+        app: './src/app.js',
+        vendor: ['vue', 'vue-router', 'axios']
+    },
+    output: {
+        path: resolve('public'),
+        filename: ((mode === 'production') ? '[name].[chunkhash].js' : '[name].js'),
+        publicPath: '/'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', 'stage-0']
+                }
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader',
+                exclude: /node_modules/,
+                options: {
+                    postcss: [
+                        autoprefixer({
+                            cascade: false,
+                            browsers: ['> 0%']
+                        })
+                    ],
+                    loaders: {
+                        stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
+                    }
+                },
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+            }
+        ]
+    },
+    plugins: [
 
-		/**
-		 * Clean out public dir
-		 */
-		new CleanWebpackPlugin(['public'], {
-			root: resolve('/'),
-			verbose: true,
-			dry: false
-		}),
+        /**
+         * Put vue into prod mode
+         */
+        new webpack.DefinePlugin({
+            'process.env': _.merge({
+                NODE_ENV: process.env.NODE_ENV,
+            }, config)
+        }),
 
-		/**
-		 * Move all assets
-		 */
-		new CopyWebpackPlugin([{
-			from: resolve('src/assets'),
-			to: resolve('public/assets')
-		}]),
+        /**
+         * Clean out public dir
+         */
+        new CleanWebpackPlugin(['public'], {
+            root: resolve('/'),
+            verbose: true,
+            dry: false
+        }),
 
-		/**
-		 * Extract all of the stylus out into this CSS file
-		 */
-		new ExtractTextPlugin(((process.env.NODE_ENV === 'production') ? '[name].[chunkhash].css' : '[name].css')),
+        /**
+         * Move all assets
+         */
+        new CopyWebpackPlugin([{
+            from: resolve('src/assets'),
+            to: resolve('public/assets')
+        }]),
 
-		/**
-		 * Inject files into HTML
-		 */
-		new HtmlWebpackPlugin({
-			filename: resolve('public/index.html'),
-			template: resolve('src/index.ejs'),
+        /**
+         * Extract all of the stylus out into this CSS file
+         */
+        new ExtractTextPlugin(((process.env.NODE_ENV === 'production') ? '[name].[chunkhash].css' : '[name].css')),
+
+        /**
+         * Inject files into HTML
+         */
+        new HtmlWebpackPlugin({
+            filename: resolve('public/index.html'),
+            template: resolve('src/index.ejs'),
             chunksSortMode: packageSort(['vendor', 'app'])
-		})
+        })
 
-	],
-	devServer: {
-		contentBase: resolve('public'),
-		historyApiFallback: true
-	},
+    ],
+    devServer: {
+        contentBase: resolve('public'),
+        historyApiFallback: true
+    },
 };
 
 /**
@@ -126,7 +149,7 @@ module.exports = {
 if (process.env.NODE_ENV !== 'production') {
 
     // Add source maps
-	module.exports.devtool = 'source-map'
+    module.exports.devtool = 'source-map'
 
 }
 
@@ -136,14 +159,14 @@ if (process.env.NODE_ENV !== 'production') {
 if (process.env.NODE_ENV === 'production') {
 
     module.exports.plugins.push(
-		new UglifyJSPlugin(),
-		new OptimizeCssAssetsPlugin(),
+        new UglifyJSPlugin(),
+        new OptimizeCssAssetsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
-        	name: 'vendor',
-        	minChunks: Infinity,
-        	filename: 'vendor-[chunkhash].js'
+            name: 'vendor',
+            minChunks: Infinity,
+            filename: 'vendor-[chunkhash].js'
         })
-	);
+    );
 
     // Use prod version of vue
     module.exports.resolve.alias.vue$ = 'vue/dist/vue.min';
