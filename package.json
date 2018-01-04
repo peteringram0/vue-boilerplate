@@ -6,9 +6,9 @@
   "author": "Peter Ingram <peter.ingram0@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "prod": "NODE_ENV=production webpack --progress --hide-modules --config webpack.config.js",
-    "dev": "NODE_ENV=develop webpack --progress --hide-modules --config webpack.config.js",
-    "serve": "webpack-dev-server --open --inline --hot",
+    "prod": "NODE_ENV=production webpack --progress --hide-modules --config build/webpack.config.js",
+    "dev": "NODE_ENV=develop webpack --progress --hide-modules --config build/webpack.config.js",
+    "serve": "webpack-dev-server --open --inline --hot --config build/webpack.config.js",
     "test:fn": "BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --single-run"
   },
   "devDependencies": {
@@ -56,8 +56,7 @@
     "vue-template-compiler": "^2.4.1",
     "wallaby-webpack": "^3.9.3",
     "webpack": "^3.2.0",
-    "webpack-dev-server": "^2.5.1",
-    "webpack-merge": "^4.1.0"
+    "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
     "axios": "^0.17.1",

@@ -7,7 +7,7 @@ module.exports = function (config) {
         preprocessors: {
             './index.js': ['webpack', 'sourcemap']
         },
-        webpack: require('../../build/webpack.test.conf'),
+        webpack: require('../../build/webpack.test.config'),
         webpackMiddleware: {
             noInfo: true
         },

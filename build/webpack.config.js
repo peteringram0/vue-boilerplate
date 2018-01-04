@@ -29,6 +29,10 @@ function packageSort(packages) {
     }
 };
 
+function resolve (dir) {
+    return path.join(__dirname, '..', dir)
+}
+
 /**
  * Module
  */
@@ -36,7 +40,7 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.esm.js',
-            '@': path.join(__dirname, 'src')
+            '@': resolve('src')
         }
     },
 	entry: {
@@ -44,7 +48,7 @@ module.exports = {
 		vendor: ['vue', 'vue-router', 'axios']
 	},
 	output: {
-		path: path.join(__dirname, '/public'),
+		path: resolve('public'),
 		filename: ((mode === 'production') ? '[name].[chunkhash].js' : '[name].js'),
 		publicPath: '/'
 	},
@@ -82,7 +86,7 @@ module.exports = {
 		 * Clean out public dir
 		 */
 		new CleanWebpackPlugin(['public'], {
-			root: __dirname,
+			root: resolve('/'),
 			verbose: true,
 			dry: false
 		}),
@@ -91,8 +95,8 @@ module.exports = {
 		 * Move all assets
 		 */
 		new CopyWebpackPlugin([{
-			from: __dirname + '/src/assets',
-			to: __dirname + '/public/assets'
+			from: resolve('src/assets'),
+			to: resolve('public/assets')
 		}]),
 
 		/**
@@ -104,14 +108,14 @@ module.exports = {
 		 * Inject files into HTML
 		 */
 		new HtmlWebpackPlugin({
-			filename: __dirname + '/public/index.html',
-			template: __dirname + '/src/index.ejs',
+			filename: resolve('public/index.html'),
+			template: resolve('src/index.ejs'),
             chunksSortMode: packageSort(['vendor', 'app'])
 		})
 
 	],
 	devServer: {
-		contentBase: ('./public'),
+		contentBase: resolve('public'),
 		historyApiFallback: true
 	},
 };

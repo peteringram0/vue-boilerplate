@@ -1,24 +1,17 @@
-var path = require('path')
-var utils = require('../../vue-boilerplate/build/utils')
-var config = require('../config')
-
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-var isProduction = process.env.NODE_ENV === 'production'
+const path = require('path')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function resolve (dir) {
     return path.join(__dirname, '..', dir)
 }
 
-module.exports = {
+const webpackConfig = {
     entry: {
         app: './src/main.js'
     },
     output: {
-        path: config.build.assetsRoot,
+        path: path.resolve(__dirname, '../public'),
         filename: '[name].js',
-        publicPath: process.env.NODE_ENV === 'production'
-            ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath
     },
     resolve: {
         extensions: ['.js', '.vue', '.json'],
@@ -30,15 +23,18 @@ module.exports = {
     module: {
         rules: [
             {
+                test: /\.styl$/,
+                use: ['vue-style-loader',
+                    { loader: 'css-loader', options: { minimize: false, sourceMap: undefined } },
+                    { loader: 'stylus-loader', options: { sourceMap: undefined } },
+                ]
+            },
+            {
                 test: /\.vue$/,
                 loader: 'vue-loader',
                 options: {
                     loaders: {
                         stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader']),
-                        sourceMap: isProduction
-                            ? config.build.productionSourceMap
-                            : config.dev.cssSourceMap,
-                        extract: isProduction
                     }
                 }
             },
@@ -50,24 +46,18 @@ module.exports = {
             {
                 test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
                 loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: utils.assetsPath('img/[name].[hash:7].[ext]')
-                }
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
                 loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
-                }
             }
         ]
     },
+    devtool: '#inline-source-map',
     plugins: [
-
         new ExtractTextPlugin('[name].css'),
-
     ]
-}
+};
+
+delete webpackConfig.entry;
+module.exports = webpackConfig;
