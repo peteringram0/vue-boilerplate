@@ -5,11 +5,11 @@
 </template>
 
 <style lang="stylus">
-    @import "./styles/styles"
+    //@import "../styles/styles"
 </style>
 
 <script>
-    import NavBar from './components/nav.vue';
+    import NavBar from '@/components/nav.vue';
 
     export default {
         components: {

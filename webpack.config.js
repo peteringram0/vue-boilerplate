@@ -35,7 +35,8 @@ function packageSort(packages) {
 module.exports = {
     resolve: {
         alias: {
-            'vue$': 'vue/dist/vue.esm.js'
+            'vue$': 'vue/dist/vue.esm.js',
+            '@': path.join(__dirname, 'src')
         }
     },
 	entry: {
