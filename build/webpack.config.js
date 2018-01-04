@@ -40,9 +40,9 @@ function resolve(dir) {
 // Load in the config file
 let config = require(resolve('config') + '/config.' + mode + '.js');
 
-console.log(_.merge({
-    NODE_ENV: process.env.NODE_ENV,
-}, config));
+// console.log(_.merge({
+//     NODE_ENV: process.env.NODE_ENV,
+// }, config));
 
 /**
  * Module

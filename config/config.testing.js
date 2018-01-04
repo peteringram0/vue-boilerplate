@@ -1,5 +1,5 @@
 module.exports = {
 
-    API_URL: 'http://localhost-testing/',
+    API_URL: '"http://localhost-testing/"',
 
 };
