@@ -49,7 +49,8 @@ module.exports = {
 		publicPath: '/'
 	},
 	module: {
-		rules: [{
+		rules: [
+		    {
 				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,

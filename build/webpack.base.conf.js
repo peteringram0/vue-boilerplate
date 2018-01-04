@@ -1,7 +1,9 @@
 var path = require('path')
 var utils = require('../../vue-boilerplate/build/utils')
 var config = require('../config')
-var vueLoaderConfig = require('./vue-loader.conf')
+
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+var isProduction = process.env.NODE_ENV === 'production'
 
 function resolve (dir) {
     return path.join(__dirname, '..', dir)
@@ -30,7 +32,15 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: 'vue-loader',
-                options: vueLoaderConfig
+                options: {
+                    loaders: {
+                        stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader']),
+                        sourceMap: isProduction
+                            ? config.build.productionSourceMap
+                            : config.dev.cssSourceMap,
+                        extract: isProduction
+                    }
+                }
             },
             {
                 test: /\.js$/,
