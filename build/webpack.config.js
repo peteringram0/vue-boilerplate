@@ -2,13 +2,13 @@ const webpack = require('webpack');
 const path = require('path');
 const _ = require('lodash');
 
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // Assign in the mode
 let mode = process.env.NODE_ENV;
@@ -156,12 +156,28 @@ if (process.env.NODE_ENV !== 'production') {
 if (process.env.NODE_ENV === 'production') {
 
     module.exports.plugins.push(
-        new UglifyJSPlugin(),
+        new webpack.optimize.UglifyJsPlugin({
+            mangle: true,
+            compress: {
+                warnings: false, // Suppress uglification warnings
+                pure_getters: true,
+                unsafe: true,
+                unsafe_comps: true,
+                screw_ie8: true
+            },
+            output: {
+                comments: false,
+            },
+            exclude: [/\.min\.js$/gi] // skip pre-minified libs
+        }),
         new OptimizeCssAssetsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
             minChunks: Infinity,
             filename: 'vendor-[chunkhash].js'
+        }),
+        new BundleAnalyzerPlugin({
+            analyzerMode: 'static'
         })
     );
 
