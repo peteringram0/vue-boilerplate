@@ -9,7 +9,8 @@
     "build:prod": "NODE_ENV=production webpack --progress --hide-modules --config build/webpack.config.js",
     "build:dev": "NODE_ENV=develop webpack --progress --hide-modules --config build/webpack.config.js",
     "dev": "webpack-dev-server --open --inline --hot --config build/webpack.config.js",
-    "test:fn": "BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --single-run"
+    "test:fn": "BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --single-run",
+    "test:fn:watch": "BABEL_ENV=test NODE_ENV=testing karma start test/unit/karma.conf.js --auto-watch"
   },
   "devDependencies": {
     "autoprefixer-core": "^6.0.1",

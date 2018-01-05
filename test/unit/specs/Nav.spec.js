@@ -1,5 +1,6 @@
-import { mount } from 'avoriaz';
+import {mount} from 'avoriaz';
 import Nav from '@/components/nav.vue';
+import router from "@/router";
 
 describe('nav.vue', function () {
 
@@ -34,4 +35,22 @@ describe('nav.vue', function () {
 
     });
 
+    it('Should collapse on route change', function (end) {
+
+        const wrapper = mount(Nav, { router });
+
+        wrapper.vm.navExpanded = true;
+
+        expect(wrapper.vm.navExpanded).toBe(true);
+
+        wrapper.vm.$router.push('/about');
+
+        setTimeout(() => {
+            expect(wrapper.vm.navExpanded).toBe(false);
+            end();
+        }, 0);
+
+    });
+
 });
+

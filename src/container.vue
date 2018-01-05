@@ -1,7 +1,8 @@
 <template lang="pug">
     div
         nav-bar(:items="navItems")
-        router-view
+        transition(name='slide-left', mode="out-in")
+            router-view.child-view
 </template>
 
 <style lang="stylus">

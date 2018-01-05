@@ -34,9 +34,6 @@
                 navExpanded: false
             }
         },
-        mounted() {
-            console.log('PING');
-        },
         methods: {
 
             /**

@@ -1,28 +1,36 @@
 # Vue-Plate
 
-Vue.js 2 & Webpack 2 boilerplate. Before you begin please install Yarn. https://yarnpkg.com/lang/en/docs/install/
+Vue.js 2 & Webpack 2 boilerplate.
 
-# Features
+## Features
 * Long term caching
 * Single file approach (With extra Stylus file)
 * Production builds (Minified)
 * Separate vendor file
 * Development environment with history and hot reading
-* ENV var's
+* Environment variables
+* Unit tests (Karma / Jasmine)
+* Code coverage (With report)
 
-![alt tag](https://media.giphy.com/media/3o6UBhjHobLFgEmrJu/giphy.gif)]
+![alt tag](https://media.giphy.com/media/3o6UBhjHobLFgEmrJu/giphy.gif)
 
-# Development
+### Setup
 ````javascript
 $ yarn install
+````
+
+### Development
+````javascript
 $ yarn dev
 ````
 
-# Production build
+### Production build
 ````javascript
-$ yarn install
 $ yarn build:prod
 ````
 
-## TODO
-* add in test coverage 
+### Testing
+````javascript
+$ yarn test:fn // Runs single
+$ yarn test:fn:watch // Continues to watch source and tests
+````
