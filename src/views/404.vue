@@ -1,12 +1,12 @@
 <template lang="pug">
-    h2 Sorry page not found
+    h2 {{ text }}
 </template>
 
 <script>
     export default{
         data(){
             return {
-                text: 'hi'
+                text: 'Sorry page not found'
             }
         }
     }

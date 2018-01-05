@@ -26,7 +26,7 @@ describe('nav.vue', function () {
 
         let wrapper = mount(Nav);
 
-        spyOn(wrapper.vm, 'otherMethod');
+        spyOn(wrapper.vm, 'otherMethod').and.callThrough();
 
         wrapper.vm.testSpy();
 

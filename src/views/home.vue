@@ -1,13 +1,13 @@
 <template lang="pug">
     section
-        h1 Home page
+        h1 {{ text }}
 </template>
 
 <script>
     export default {
         data() {
             return {
-                text: 'Hello World'
+                text: 'Home Page'
             }
         }
     }

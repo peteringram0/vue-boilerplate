@@ -40,10 +40,6 @@ function resolve(dir) {
 // Load in the config file
 let config = require(resolve('config') + '/config.' + mode + '.js');
 
-// console.log(_.merge({
-//     NODE_ENV: process.env.NODE_ENV,
-// }, config));
-
 /**
  * Module
  */
@@ -84,9 +80,9 @@ module.exports = {
                             browsers: ['> 0%']
                         })
                     ],
-                    loaders: {
-                        stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader'])
-                    }
+                    loaders: ((mode === 'testing' || mode === 'develop') ?
+                        ['css-loader', 'stylus-loader'] :
+                        { stylus: ExtractTextPlugin.extract(['css-loader', 'stylus-loader']) })
                 },
             },
             {
@@ -100,9 +96,9 @@ module.exports = {
          * Put vue into prod mode
          */
         new webpack.DefinePlugin({
-            'process.env': _.merge({
-                NODE_ENV: process.env.NODE_ENV,
-            }, config)
+            'process.env': _.merge(config, {
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            })
         }),
 
         /**
@@ -138,8 +134,9 @@ module.exports = {
 
     ],
     devServer: {
-        contentBase: resolve('public'),
-        historyApiFallback: true
+        contentBase: './public',
+        historyApiFallback: true,
+        disableHostCheck: true
     },
 };
 

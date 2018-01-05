@@ -18,10 +18,10 @@ $ yarn install
 $ yarn dev
 ````
 
-# Production
+# Production build
 ````javascript
 $ yarn install
-$ yarn prod
+$ yarn build:prod
 ````
 
 ## TODO

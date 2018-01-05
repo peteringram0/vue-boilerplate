@@ -6,6 +6,9 @@
 
 <style lang="stylus">
     @import "./styles/styles"
+
+    div
+        position relative
 </style>
 
 <script>

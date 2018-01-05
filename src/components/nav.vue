@@ -1,22 +1,29 @@
 <template lang="pug">
     header.nav
-        .container
-            .nav-left
-                a.nav-item.is-brand
-                    img(alt='logo')
-            span.nav-toggle(@click="toggleNav", :class="navExpanded")
-                span
-                span
-                span
-            .nav-right.nav-menu(:class="navExpanded")
-                router-link.nav-item.is-tab(v-for='item in items', :key="item.url", :to='item.url', v-if='!item.children') {{ item.name }}
-                a.nav-item.is-tab Log out
+        .nav-right.nav-menu(:class="navExpanded")
+            router-link.nav-item(v-for='item in items', :key="item.url", :to='item.url', v-if='!item.children') {{ item.name }}
 </template>
 
 <style lang="stylus" scoped>
-    .nav-item
-        &.is-active, &:hover
-            border-bottom-color white !important
+    .nav
+        position absolute
+        top 50%
+        margin-top 30px
+        width 100%
+        text-align center
+
+        a
+            color white
+            text-decoration none
+
+            &:active, &:focus, &:visited
+                color white
+
+            &:hover
+                color darken(white, 12)
+
+        .nav-item
+            margin 0 5px
 </style>
 
 <script>
@@ -26,6 +33,9 @@
             return {
                 navExpanded: false
             }
+        },
+        mounted() {
+            console.log('PING');
         },
         methods: {
 
