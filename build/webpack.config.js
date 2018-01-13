@@ -106,6 +106,7 @@ module.exports = {
          */
         new CleanWebpackPlugin(['public'], {
             root: resolve('/'),
+            exclude:  ['stats.json'],
             verbose: true,
             dry: false
         }),
@@ -146,7 +147,7 @@ module.exports = {
 if (process.env.NODE_ENV !== 'production') {
 
     // Add source maps
-    module.exports.devtool = 'source-map'
+    module.exports.devtool = 'source-map';
 
 }
 
@@ -173,12 +174,14 @@ if (process.env.NODE_ENV === 'production') {
         new OptimizeCssAssetsPlugin(),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: Infinity,
+            minChunks: function (module) {
+                return module.context && module.context.indexOf('node_modules') !== -1;
+            },
             filename: 'vendor-[chunkhash].js'
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'static'
-        })
+        }),
     );
 
     // Use prod version of vue

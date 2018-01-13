@@ -19,7 +19,8 @@ export default new VueRouter({
 		{
 			name: 'About',
 			path: '/about',
-			component: require('../views/about.vue').default
+            component: resolve => require(['../views/about.vue'], resolve)
+			// component: require('../views/about.vue').default
 		},
 		{path: '*', component: require('../views/404.vue').default },
         {path: '/', redirect: { path: '/home' }}
