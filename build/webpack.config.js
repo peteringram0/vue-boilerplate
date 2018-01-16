@@ -8,7 +8,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // Assign in the mode
 let mode = process.env.NODE_ENV;
@@ -178,10 +177,7 @@ if (process.env.NODE_ENV === 'production') {
                 return module.context && module.context.indexOf('node_modules') !== -1;
             },
             filename: 'vendor-[chunkhash].js'
-        }),
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'static'
-        }),
+        })
     );
 
     // Use prod version of vue
